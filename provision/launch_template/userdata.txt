@@ -1,0 +1,16 @@
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="==MYBOUNDARY=="
+
+--==MYBOUNDARY==
+Content-Type: text/x-shellscript; charset="us-ascii"
+
+#cloud-boothook
+#!/bin/bash
+cloud-init-per once docker_options echo 'OPTIONS="${OPTIONS} --storage-driver devicemapper --storage-opt dm.basesize=100G"' >> /etc/sysconfig/docker
+
+echo ECS_CLUSTER=default>>/etc/ecs/ecs.config
+echo ECS_IMAGE_CLEANUP_INTERVAL=60m >> /etc/ecs/ecs.config
+echo ECS_IMAGE_MINIMUM_CLEANUP_AGE=60m >> /etc/ecs/ecs.config
+
+service docker restart
+--==MYBOUNDARY==--

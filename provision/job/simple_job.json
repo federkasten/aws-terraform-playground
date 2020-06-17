@@ -1,0 +1,9 @@
+{
+    "command": ["echo", "Hello World"],
+    "image": "busybox",
+    "memory": 120,
+    "vcpus": 1,
+    "environment": [
+        {"name": "EXAMPLE_KEY", "value": "EXAMPLE_VALUE"}
+    ]
+}
